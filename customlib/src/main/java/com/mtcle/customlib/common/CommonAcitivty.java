@@ -1,5 +1,6 @@
 package com.mtcle.customlib.common;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,12 +17,14 @@ import com.mtcle.customlib.R;
  */
 public abstract class CommonAcitivty extends AppCompatActivity {
 
+    protected Context mContext;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String subString="子类传过来的字符串";
         int layoutId=getSubLayoutId();
-        setContentView(getSubLayoutId());
+//        setContentView(getSubLayoutId());
+        mContext=this;
     }
 
 
@@ -37,6 +40,7 @@ public abstract class CommonAcitivty extends AppCompatActivity {
     protected <T> T jsonParse(String jsonStr,Class<T> cls){
         T obj=null;
         try {
+            //做一些非空判断
             obj=new Gson().fromJson(jsonStr,cls);
         }catch (Exception e){
             e.printStackTrace();
@@ -46,4 +50,8 @@ public abstract class CommonAcitivty extends AppCompatActivity {
 
         return obj;
     }
+
+
+
+
 }
