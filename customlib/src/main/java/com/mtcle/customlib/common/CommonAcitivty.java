@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.gson.Gson;
 import com.mtcle.customlib.R;
 
 /**
@@ -20,8 +21,6 @@ public abstract class CommonAcitivty extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         String subString="子类传过来的字符串";
         int layoutId=getSubLayoutId();
-
-
         setContentView(getSubLayoutId());
     }
 
