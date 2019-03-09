@@ -34,5 +34,16 @@ public abstract class CommonAcitivty extends AppCompatActivity {
     protected abstract int getSubLayoutId();
 
 
+    protected <T> T jsonParse(String jsonStr,Class<T> cls){
+        T obj=null;
+        try {
+            obj=new Gson().fromJson(jsonStr,cls);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
 
+
+        return obj;
+    }
 }
