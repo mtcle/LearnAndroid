@@ -34,3 +34,13 @@
     * 高阶：可自定义buildConfig参数`buildConfigField("int", "API_HOST_TYPE", "${API_PRO_TYPE}")`
     * 加壳（腾讯云加固、360加壳）加壳后记得测试
     * 
+    
+    
+## 3.17
+* activity 启动方式，生命周期
+* fragment 
+* broadcast 两种方式 使用场景 (eventbus)
+* service 场景 线程问题、启动绑定
+* 自定义组件
+* gradle 配置脚本依赖
+* jcenter
