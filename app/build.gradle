@@ -29,6 +29,7 @@ android {
         debug{
             signingConfig signingConfigs.release
         }
+
     }
     applicationVariants.all { variant ->
         variant.outputs.all {

@@ -12,9 +12,15 @@ import com.mtcle.customlib.common.utils.MyCrashHandler;
  * 描述：
  */
 public class MyApplication extends Application {
+
+
+
     @Override
     public void onCreate() {
         super.onCreate();
         MyCrashHandler myCrashHandler=new MyCrashHandler();
+
+
+
     }
 }

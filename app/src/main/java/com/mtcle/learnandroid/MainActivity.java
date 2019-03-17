@@ -18,19 +18,27 @@ import com.mtcle.learnandroid.common.RespCommon;
 import com.okhttplib.HttpInfo;
 import com.okhttplib.annotation.RequestType;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends AppRequestDataActivity {
-    boolean i=false;
+    boolean i = false;
     String test;
+
+
+    public static String aa="xxxx";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toast("xxx");
-        String str="{\n" +
+        String str = "{\n" +
                 "name: \"张三\",\n" +
                 "sex: 1\n" +
                 "}";
-getIntent().getIntExtra("xxx",0);
+        getIntent().getIntExtra("xxx", 0);
         String url = "http://m2.qiushibaike.com/article/list/suggest?count=30&page=1";
 
         appRequestDataMap(url, null, RequestType.GET, new RequestCallBack() {
@@ -41,9 +49,9 @@ getIntent().getIntExtra("xxx",0);
             }
         });
 //        User user=new Gson().fromJson(str,User.class);
-        User user=jsonParse(str,User.class);
+        User user = jsonParse(str, User.class);
 
-       startService(new Intent(this,TestServices.class));
+        startService(new Intent(this, TestServices.class));
        /*bindService(new Intent(this, TestServices.class), new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
@@ -59,15 +67,15 @@ getIntent().getIntExtra("xxx",0);
 
         test();
     }
+
     BroadCastRec b;
     IntentFilter intentFilter;
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
 
         startService(new Intent());
-
-
 
 
         bindService(new Intent(mContext, TestServices.class), new ServiceConnection() {
@@ -80,13 +88,12 @@ getIntent().getIntExtra("xxx",0);
             public void onServiceDisconnected(ComponentName name) {
 
             }
-        },BIND_AUTO_CREATE);
+        }, BIND_AUTO_CREATE);
 
 
-
-        b=new BroadCastRec();
-        intentFilter=new IntentFilter(BroadCastRec.Action);
-        registerReceiver(b,intentFilter);
+        b = new BroadCastRec();
+        intentFilter = new IntentFilter(BroadCastRec.Action);
+        registerReceiver(b, intentFilter);
 
 
     }
@@ -101,7 +108,7 @@ getIntent().getIntExtra("xxx",0);
 
     }
 
-    public static void main(String[] a){
+   /* public static void main(String[] a){
 
         String str="{\n" +
                 "name: \"张三\",\n" +
@@ -112,7 +119,7 @@ getIntent().getIntExtra("xxx",0);
 //        User user=new Gson().fromJson(str,User.class);
 
 
-    }
+    }*/
 
 
     @Override
@@ -124,11 +131,46 @@ getIntent().getIntExtra("xxx",0);
 
     @Override
     protected int getSubLayoutId() {
-        i=false;
+        i = false;
         return 0;
     }
 
-    private void test(){
-        i=true;
+    private void test() {
+        i = true;
     }
+
+
+    private static void StrDel() {
+        String str = "\"1234'56\"";
+        int start = str.indexOf('"');//
+        int test = str.indexOf("'");
+        int end = str.lastIndexOf('"');
+//       String str2= str.substring(start+1,end);
+        str.toLowerCase();
+        str.toUpperCase();
+        String str2 = "xxxxx,xxxx,223,444";
+        str2.charAt(0);
+        char a='x';
+
+
+//        String[] a = str2.split(",");
+
+
+//        List<String> list = Arrays.asList(a);
+
+
+
+        //subString
+        //repleace
+        //indexOf
+        //split
+
+    }
+
+
+    public static void main(String[] a) {
+        StrDel();
+    }
+
+
 }
