@@ -39,8 +39,9 @@
 ## 3.17
 * activity 启动方式，生命周期
 * fragment 
-* broadcast 两种方式 使用场景 (eventbus)
+* broadcast 两种方式 使用场景 (eventbus)  `LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);`
 * service 场景 线程问题、启动绑定
 * 自定义组件
 * gradle 配置脚本依赖
-* jcenter
+* jcenter 上传流程，gradle脚本
+* gradle 变量声明、模块gradle引用变量

@@ -1,5 +1,10 @@
 package com.mtcle.learnandroid;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +30,7 @@ public class MainActivity extends AppRequestDataActivity {
                 "name: \"张三\",\n" +
                 "sex: 1\n" +
                 "}";
-
+getIntent().getIntExtra("xxx",0);
         String url = "http://m2.qiushibaike.com/article/list/suggest?count=30&page=1";
 
         appRequestDataMap(url, null, RequestType.GET, new RequestCallBack() {
@@ -37,16 +42,61 @@ public class MainActivity extends AppRequestDataActivity {
         });
 //        User user=new Gson().fromJson(str,User.class);
         User user=jsonParse(str,User.class);
-//        if(i){
-//            test="xxx";
-//        }else{
-//
-//        }
-//
-//        Log.d("mtcle",null);
-        //
-        //xxx
 
+       startService(new Intent(this,TestServices.class));
+       /*bindService(new Intent(this, TestServices.class), new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+
+            }
+        },BIND_AUTO_CREATE);*/
+
+
+        test();
+    }
+    BroadCastRec b;
+    IntentFilter intentFilter;
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        startService(new Intent());
+
+
+
+
+        bindService(new Intent(mContext, TestServices.class), new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+
+            }
+        },BIND_AUTO_CREATE);
+
+
+
+        b=new BroadCastRec();
+        intentFilter=new IntentFilter(BroadCastRec.Action);
+        registerReceiver(b,intentFilter);
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        //强引用类型 释放掉
+        super.onDestroy();
+        unregisterReceiver(b);
 
 
     }
@@ -65,6 +115,12 @@ public class MainActivity extends AppRequestDataActivity {
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+    }
 
     @Override
     protected int getSubLayoutId() {
