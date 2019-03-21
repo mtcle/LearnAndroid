@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.gson.Gson;
-import com.mtcle.customlib.R;
 
 /**
  * 作者：Lenovo on 2019/3/9 09:51
@@ -22,8 +21,7 @@ public abstract class CommonAcitivty extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String subString="子类传过来的字符串";
-        int layoutId=getSubLayoutId();
-//        setContentView(getSubLayoutId());
+        setContentView(getSubLayoutId());
         mContext=this;
     }
 
