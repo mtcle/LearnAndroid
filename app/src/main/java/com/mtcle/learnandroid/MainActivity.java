@@ -1,16 +1,9 @@
 package com.mtcle.learnandroid;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
-import android.os.IBinder;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
-import com.google.gson.Gson;
-import com.mtcle.customlib.common.CommonAcitivty;
 import com.mtcle.customlib.common.utils.DebugUtil;
 import com.mtcle.learnandroid.beans.User;
 import com.mtcle.learnandroid.common.AppRequestDataActivity;
@@ -18,15 +11,12 @@ import com.mtcle.learnandroid.common.RespCommon;
 import com.okhttplib.HttpInfo;
 import com.okhttplib.annotation.RequestType;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class MainActivity extends AppRequestDataActivity {
     boolean i = false;
     String test;
 
 
-    public static String aa="xxxx";
+    public static String aa = "xxxx";
 
 
     @Override
@@ -75,10 +65,10 @@ public class MainActivity extends AppRequestDataActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
 
-        startService(new Intent());
+//        startService(new Intent());
 
 
-        bindService(new Intent(mContext, TestServices.class), new ServiceConnection() {
+        /*bindService(new Intent(mContext, TestServices.class), new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
 
@@ -88,13 +78,13 @@ public class MainActivity extends AppRequestDataActivity {
             public void onServiceDisconnected(ComponentName name) {
 
             }
-        }, BIND_AUTO_CREATE);
+        }, BIND_AUTO_CREATE);*/
 
 
-        b = new BroadCastRec();
+      /*  b = new BroadCastRec();
         intentFilter = new IntentFilter(BroadCastRec.Action);
         registerReceiver(b, intentFilter);
-
+*/
 
     }
 
@@ -103,7 +93,7 @@ public class MainActivity extends AppRequestDataActivity {
 
         //强引用类型 释放掉
         super.onDestroy();
-        unregisterReceiver(b);
+//        unregisterReceiver(b);
 
 
     }
@@ -132,7 +122,7 @@ public class MainActivity extends AppRequestDataActivity {
     @Override
     protected int getSubLayoutId() {
         i = false;
-        return 0;
+        return R.layout.activity_main;
     }
 
     private void test() {
@@ -150,14 +140,13 @@ public class MainActivity extends AppRequestDataActivity {
         str.toUpperCase();
         String str2 = "xxxxx,xxxx,223,444";
         str2.charAt(0);
-        char a='x';
+        char a = 'x';
 
 
 //        String[] a = str2.split(",");
 
 
 //        List<String> list = Arrays.asList(a);
-
 
 
         //subString
