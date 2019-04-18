@@ -84,10 +84,10 @@ public class ThreadLearnActivity extends CommonAcitivty {
 
 
 
-    /*public static void main(String[] a) {
+    public static void main(String[] a) {
         thread1Test();
         thread2Test();
-    }*/
+    }
 
 
     private static void thread1Test() {
@@ -119,7 +119,8 @@ public class ThreadLearnActivity extends CommonAcitivty {
     }
 
 
-    private static void doSomeThingCoastTime(String name) {
+    private static /*synchronized*/ void doSomeThingCoastTime(String name) {
+
         if (totalSize < 30) {
             try {
                 Thread.sleep(500);//模拟耗时操作
