@@ -7,7 +7,7 @@ package com.mtcle.learnandroid.day324.order;
  * <p>
  * 描述：
  */
-public class UserBeanOrder /*implements Comparable<UserBeanOrder> */{
+public class UserBeanOrder implements Comparable<UserBeanOrder> {
     private String name;
     private int age;
 
@@ -33,10 +33,10 @@ public class UserBeanOrder /*implements Comparable<UserBeanOrder> */{
     }
 
 
-//    @Override
-//    public int compareTo(UserBeanOrder o) {
-//        return getAge() - o.age;
-//    }
+    @Override
+    public int compareTo(UserBeanOrder o) {
+        return o.age - getAge();
+    }
 
 
     @Override

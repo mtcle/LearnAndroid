@@ -56,6 +56,10 @@ public class ThreadLearnActivity extends CommonAcitivty {
                 asyncTask.execute("我是参数");
             }
         });
+
+
+//        HttpRequestAsyncTask httpRequestAsyncTask = new HttpRequestAsyncTask();
+//        httpRequestAsyncTask.execute("我是参数");
     }
 
     private static Integer totalSize = 0;
@@ -83,12 +87,26 @@ public class ThreadLearnActivity extends CommonAcitivty {
     }
 
 
+    private void costTimeDel() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //1、调接口，耗时操作
+                //.... 耗时3秒
+                //操作结果
+                result = "结果";
+
+
+            }
+        }).start();
+    }
 
     public static void main(String[] a) {
         thread1Test();
         thread2Test();
     }
 
+    String result;
 
     private static void thread1Test() {
         Runnable runnable = new Runnable() {
@@ -102,7 +120,12 @@ public class ThreadLearnActivity extends CommonAcitivty {
         };
         Thread thread = new Thread(runnable);
         thread.start();
+
+//        costTimeDel();
+
+        //刷新ui，result是没有值的
     }
+
 
     private static void thread2Test() {
         Runnable runnable = new Runnable() {
@@ -133,9 +156,48 @@ public class ThreadLearnActivity extends CommonAcitivty {
     }
 
 
+    class HttpRequestAsyncTask extends AsyncTask<String, Integer, Object> {
+
+        //异步任务开始前调的方法，可以刷新ui
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            //例如：显示loading框
+        }
+
+        //线程操作，无法刷新ui，结果返回
+        @Override
+        protected Object doInBackground(String... strings) {
+            //耗时操作，例如网络请求，计算之类
+            String result = "耗时操作得到的结果";
+            publishProgress(50);//
+            return result;
+        }
+
+        //耗时操作时，同步刷新ui使用的，例如下载进度条刷新
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            //ui显示 下载进度等
+            //得到下载进度50% 刷新progressbar
+        }
+
+        //得到耗时操作返回的结果，刷新ui
+        @Override
+        protected void onPostExecute(Object result) {
+            super.onPostExecute(result);
+            //耗时操作完成，返回结果
+            //拿到结果刷新ui，赋值等
+
+        }
+    }
+
+
+
     class MyAsyncTask extends AsyncTask<String, Integer, String> {
 
 
+        //耗时操作
         @Override
         protected String doInBackground(String... strings) {
             while (totalSize < 30) {
@@ -151,12 +213,14 @@ public class ThreadLearnActivity extends CommonAcitivty {
             return "我执行完毕" + totalSize;
         }
 
+        //进度
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
             tvShow.setText("当前执行进度：" + values[0]);
         }
 
+        //结果
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);

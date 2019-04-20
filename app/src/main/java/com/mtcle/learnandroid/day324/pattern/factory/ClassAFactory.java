@@ -10,6 +10,10 @@ package com.mtcle.learnandroid.day324.pattern.factory;
 public class ClassAFactory {
 
     public ClassA createClassA() {
+
+
         return new ClassA();
     }
+
+
 }

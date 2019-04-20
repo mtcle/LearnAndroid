@@ -1,7 +1,5 @@
 package com.mtcle.learnandroid.day324.pattern;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
@@ -36,8 +34,8 @@ public class DesignPatternActivity extends CommonAcitivty {
 
 
     public static void main(String[] a) {
-//        observer();
-        buildPattern();
+        observer();
+//        buildPattern();
     }
 
     /**
@@ -65,6 +63,9 @@ public class DesignPatternActivity extends CommonAcitivty {
      */
     private static void buildPattern() {
         ClassB b = ClassBBuilder.create().setName("张三").setPhone("110").build();
+        ClassB b1=new ClassB();
+        b1.setName("xxx");
+        b1.setSex(1);
         System.out.println("B:" + b);
     }
 
@@ -72,10 +73,12 @@ public class DesignPatternActivity extends CommonAcitivty {
      * 工厂模式
      */
     private void factory() {
+
+
         ClassAFactory factory = new ClassAFactory();
         ClassA classA = factory.createClassA();
 
-        Bitmap bitmap = BitmapFactory.decodeFile("xxx");
+//        Bitmap bitmap = BitmapFactory.decodeFile("xxx");
     }
 
     /**

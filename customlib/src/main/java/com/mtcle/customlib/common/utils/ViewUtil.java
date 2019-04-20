@@ -12,6 +12,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class ViewUtil {
 
@@ -144,9 +149,9 @@ public class ViewUtil {
 	}*/
 
 
-
     private static long lastClickTime = 0;//上次点击的时间
     private static int spaceTime = 1000;//时间间隔
+
     /**
      * isFastDoubleClick
      * 描述：防止重复点击
@@ -190,4 +195,27 @@ public class ViewUtil {
         }
     }
 
+
+
+
+
+
+    public static List<String> getMessage() {
+
+
+
+//        ArrayList<String> messages=new ArrayList<String>();//不要这样用
+//        HashMap<String,String> maps=new HashMap<String, String>();
+        List<String> messages = new ArrayList<String>();//这样用
+
+
+        messages.add("");
+
+        Map<String, String> maps = new HashMap<String, String>();
+        maps.put("xxx", "xxx");
+
+//        ArrayList<String> messages = new ArrayList<String>();
+
+        return messages;
+    }
 }

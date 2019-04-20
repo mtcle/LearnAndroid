@@ -60,4 +60,22 @@ public class SensorActivity extends CommonAcitivty {
             }
         }, sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT), SENSOR_DELAY_NORMAL);
     }
+
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        //低内存，
+
+
+
+        //
+
+
+
+
+    }
+
+
+
 }

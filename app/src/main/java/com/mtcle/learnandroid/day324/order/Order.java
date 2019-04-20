@@ -2,7 +2,6 @@ package com.mtcle.learnandroid.day324.order;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -28,12 +27,22 @@ public class Order {
         list.add(user4);
         System.out.println("当前list:" + list);
 
-        Collections.sort(list, new Comparator<UserBeanOrder>() {
-            @Override
-            public int compare(UserBeanOrder o1, UserBeanOrder o2) {
-                return o1.getAge() - o2.getAge();
-            }
-        });
+        Collections.sort(list);
+
+
+//        Collections.sort(list, new Comparator<UserBeanOrder>() {
+//            @Override
+//            public int compare(UserBeanOrder o1, UserBeanOrder o2) {
+//                if (o1.getAge() > o2.getAge()) {
+//                    return 1;
+//                } else if (o1.getAge() == o2.getAge()) {
+//                    return 0;
+//                } else {
+//                    return -1;
+//                }
+//            }
+//        });
+
 
         System.out.println("排序后list:" + list);
 

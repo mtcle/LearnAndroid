@@ -22,12 +22,23 @@ import okio.ByteString;
  * 邮箱：mtcle@126.com
  * <p>
  * 描述：
+ * websocket流程
+ * 1、创建客户端，建立连接
+ * 2、注册监听
+ * 3、认证登录
+ * 4、发送消息或者收到消息
+ * 5、心跳，ping、pong
  */
 public class WebSocket extends CommonAcitivty {
     private OkHttpClient okHttpClient;
     private okhttp3.WebSocket webSocket;
     private String url = "wss://uattsm.17wanxiao.com/websocket/payresult";
+
     private TextView tvTip;
+
+
+
+
 
     @Override
     protected int getSubLayoutId() {
@@ -54,6 +65,9 @@ public class WebSocket extends CommonAcitivty {
                         super.onMessage(webSocket, text);
                         DebugUtil.debug("onMessage收到消息text：" + text);
                         tvTip.setText("接受到数据：" + text);
+
+                        //
+
                     }
 
                     @Override

@@ -8,9 +8,9 @@ package com.mtcle.learnandroid.day324.pattern.instances;
  * 描述：线程安全的，有jvm保证线程安全
  */
 public class SingleInstancClass {
-    private static final SingleInstancClass ourInstance = new SingleInstancClass();
+    private static  final  SingleInstancClass ourInstance = new SingleInstancClass();
 
-    public static SingleInstancClass getInstance() {
+    public static  SingleInstancClass getInstance() {
         return ourInstance;
     }
 
