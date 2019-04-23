@@ -35,7 +35,15 @@ allprojects {
         maven {//自己的maven库,因为没有开源，所以无法上传到jcenter
             url 'https://dl.bintray.com/mtcle/maven'
         }
+
+        flatDir {
+            dirs project(':app').file('libs')
+            dirs project(':customlib').file('libs')
+
+        }
     }
+
+
 }
 
 task clean(type: Delete) {

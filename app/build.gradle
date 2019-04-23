@@ -22,7 +22,7 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            shrinkResources true//默认是false，true会打包的时候自动移除掉没有使用到的资源
+            shrinkResources false//默认是false，true会打包的时候自动移除掉没有使用到的资源
             signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

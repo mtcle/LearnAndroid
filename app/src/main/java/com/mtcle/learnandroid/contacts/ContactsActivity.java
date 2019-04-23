@@ -1,0 +1,64 @@
+package com.mtcle.learnandroid.contacts;
+
+import android.Manifest;
+import android.view.View;
+
+import com.mtcle.customlib.common.CommonAcitivty;
+import com.mtcle.customlib.common.utils.DebugUtil;
+import com.mtcle.customlib.common.utils.ViewUtil;
+import com.mtcle.learnandroid.R;
+
+import java.util.List;
+
+/**
+ * 作者：Lenovo on 2019/4/23 15:09
+ * <p>
+ * 邮箱：mtcle@126.com
+ * <p>
+ * 描述：
+ */
+public class ContactsActivity extends CommonAcitivty {
+    @Override
+    protected int getSubLayoutId() {
+        return R.layout.activity_contacts;
+    }
+
+    public void btnContacts(View v) {
+
+        requestPerssion(new String[]{Manifest.permission.READ_CONTACTS, Manifest.permission.READ_SMS}, new PermissionCallback() {
+            @Override
+            public void result(boolean isPermissioned) {
+                if (isPermissioned) {
+                    //有权限
+//                    List<ContactUserBean> contacts = ContactsUtils.queryContacts(mContext);
+//                    DebugUtil.debug("读取通讯录结束：" + contacts);
+
+                    String userNme = ContactsUtils.getDisplayNameByPhone1(mContext, "10086");
+                    DebugUtil.debug("根据电话查姓名结果：" + userNme);
+
+                    String phone = ContactsUtils.getPhoneByName(mContext, "移动小号");
+                    DebugUtil.debug("根据姓名查电话结果：" + phone);
+                } else {
+                    ViewUtil.showToast(mContext, "无权限，无法使用！");
+                }
+            }
+        });
+    }
+
+    public void btnSms(View v) {
+
+       requestPerssion(new String[]{ Manifest.permission.READ_SMS,Manifest.permission.READ_CONTACTS}, new PermissionCallback() {
+            @Override
+            public void result(boolean isPermissioned) {
+                if (isPermissioned) {
+                    //有权限
+                    DebugUtil.debug("有短信权限了");
+                    List<SmsBean> datas = SmsReadUtils.getSmsInPhone(mContext);
+                    DebugUtil.debug("短信列表：" + datas);
+                } else {
+                    ViewUtil.showToast(mContext, "无权限，无法使用！");
+                }
+            }
+        });
+    }
+}

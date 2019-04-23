@@ -60,13 +60,6 @@ public class MainActivity extends AppRequestDataActivity {
 
 
 
-        requestPerssion(new String[]{"xxx", "xxx"}, new PermissionCallback() {
-            @Override
-            public void result(int requestCode, String[] permissions, int[] grantResults) {
-                //当前页面动态权限申请结果回调
-            }
-        });
-
     }
 
     BroadCastRec b;

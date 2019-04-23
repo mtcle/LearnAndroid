@@ -1,12 +1,17 @@
 package com.mtcle.customlib.common;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.google.gson.Gson;
+import com.mtcle.customlib.common.utils.DebugUtil;
+import com.mtcle.customlib.common.utils.PermissionUtils;
+import com.taobao.library.EasyPermission;
+
+import java.util.List;
 
 /**
  * 作者：Lenovo on 2019/3/9 09:51
@@ -19,6 +24,8 @@ public abstract class CommonAcitivty extends AppCompatActivity {
 
     protected Context mContext;
 
+    protected int PERMISSION_REQUEST_CODE = 0x18;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,22 +35,32 @@ public abstract class CommonAcitivty extends AppCompatActivity {
     }
 
 
-    private PermissionCallback permissionCallback;
+    private EasyPermission easyPermission;
 
     /**
      * 发起动态权限申请
      *
      * @param perssions
      */
-    protected void requestPerssion(String[] perssions, PermissionCallback permissionCallback) {
+    protected void requestPerssion(String[] perssions, final PermissionCallback permissionCallback) {
         //发起动态权限申请
-        this.permissionCallback = permissionCallback;
-        //TODO
+        easyPermission = PermissionUtils.checkPermissionByMtcle(this, perssions, new PermissionUtils.OnPermissionListener() {
+            @Override
+            public void onPermissionGranted(List<String> grantedPermissions) {
+                DebugUtil.debug("权限同意：" + grantedPermissions);
+            }
 
+            @Override
+            public void onPermissionDenied(List<String> grantedPermissions) {
+                DebugUtil.error("权限被拒绝：" + grantedPermissions);
+            }
 
-
-
-
+            @Override
+            public void onIsAllGranted(boolean isAllGranted) {
+                DebugUtil.debug("是否全部授予权限：" + isAllGranted);
+                permissionCallback.result(isAllGranted);
+            }
+        });
     }
 
     protected void Toast(String msg) {
@@ -69,18 +86,16 @@ public abstract class CommonAcitivty extends AppCompatActivity {
         return obj;
     }
 
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        //动态权限授权结果
-        if (permissionCallback != null) {
-            permissionCallback.result(requestCode, permissions, grantResults);
-        }
+    protected interface PermissionCallback {
+        void result(boolean isPermissioned);
     }
 
-    protected interface PermissionCallback {
-        void result(int requestCode, String[] permissions, int[] grantResults);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (easyPermission != null) {
+            easyPermission.handleResult(requestCode, resultCode, data);
+        }
     }
 
 }
