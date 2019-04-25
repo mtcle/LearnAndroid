@@ -105,20 +105,22 @@ public class ContactsUtils {
     }
 
 
-    public synchronized static String getPhoneByName(Context context, String name) {
-        String displayName = null;
+    public synchronized static List<PhoneNumber> getPhoneByName(Context context, String name) {
         ContentResolver resolver = context.getContentResolver();
         Cursor cursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + "=?",
                 new String[]{name}, null);
+        List<PhoneNumber> allPhoneNum = new ArrayList<>();
         if (cursor != null) {
             while (cursor.moveToNext()) {
-                displayName = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                if (!TextUtils.isEmpty(displayName)) {
-                    break;
+                String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                int type = cursor.getInt(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
+                if (!TextUtils.isEmpty(phone)) {
+                    PhoneNumber phoneNumber = new PhoneNumber(phone, type);
+                    allPhoneNum.add(phoneNumber);
                 }
             }
         }
-        return displayName;
+        return allPhoneNum;
     }
 
 
@@ -139,9 +141,11 @@ public class ContactsUtils {
                 .append(" ").append(phoneNum.substring(7, 11)).toString();
         String phone2 = new StringBuffer(phoneNum.subSequence(0, 3)).append("-").append(phoneNum.substring(3, 7))
                 .append("-").append(phoneNum.substring(7, 11)).toString();
+        String phone3format = new StringBuffer(phoneNum.subSequence(0, 1)).append(" ").append(phoneNum.substring(1, 4)).append("-").append(phoneNum.substring(4, 7))
+                .append("-").append(phoneNum.substring(7, 11)).toString();
         ContentResolver resolver = context.getContentResolver();
-        Cursor cursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.NUMBER + " in(?,?,?)", new String[]{
-                phoneNum, phone1, phone2}, null);
+        Cursor cursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.NUMBER + " in(?,?,?,?)", new String[]{
+                phoneNum, phone1, phone2, phone3format}, null);
 
         if (cursor != null) {
 

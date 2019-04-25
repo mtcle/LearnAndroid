@@ -33,10 +33,10 @@ public class ContactsActivity extends CommonAcitivty {
 //                    List<ContactUserBean> contacts = ContactsUtils.queryContacts(mContext);
 //                    DebugUtil.debug("读取通讯录结束：" + contacts);
 
-                    String userNme = ContactsUtils.getDisplayNameByPhone1(mContext, "10086");
+                    String userNme = ContactsUtils.getDisplayNameByPhone1(mContext, "15966666666");
                     DebugUtil.debug("根据电话查姓名结果：" + userNme);
 
-                    String phone = ContactsUtils.getPhoneByName(mContext, "移动小号");
+                    List<PhoneNumber> phone = ContactsUtils.getPhoneByName(mContext, "张三");
                     DebugUtil.debug("根据姓名查电话结果：" + phone);
                 } else {
                     ViewUtil.showToast(mContext, "无权限，无法使用！");
