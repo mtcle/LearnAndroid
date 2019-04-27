@@ -91,8 +91,16 @@ public class ContactsUtils {
                                 .getInt(phoneCur
                                         .getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
 //                        Log.v("type", type);
-                        PhoneNumber phoneNumber = new PhoneNumber(number, type);
-                        numbers.add(phoneNumber);
+
+
+                        if (StringUtils.isNotBlank(number)) {
+                            PhoneNumber phoneNumber = new PhoneNumber(number, type);
+                            String phoneSmart = number.replaceAll(" ", "");
+                            phoneSmart = phoneSmart.replaceAll("-", "");
+                            phoneNumber.setPhoneNumSmart(phoneSmart);
+                            numbers.add(phoneNumber);
+                        }
+
 
                     }
                     phoneCur.close();
@@ -106,6 +114,13 @@ public class ContactsUtils {
     }
 
 
+    /**
+     * 根据姓名查询到手机号
+     *
+     * @param context
+     * @param name
+     * @return
+     */
     public synchronized static List<PhoneNumber> getPhoneByName(Context context, String name) {
         ContentResolver resolver = context.getContentResolver();
         Cursor cursor = resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + "=?",
@@ -116,10 +131,14 @@ public class ContactsUtils {
                 String phone = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
                 int type = cursor.getInt(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
                 if (!TextUtils.isEmpty(phone)) {
-                    PhoneNumber phoneNumber = new PhoneNumber(phone, type);
-                    allPhoneNum.add(phoneNumber);
+                        PhoneNumber phoneNumber = new PhoneNumber(phone, type);
+                        String phoneSmart = phone.replaceAll(" ", "");
+                        phoneSmart = phoneSmart.replaceAll("-", "");
+                        phoneNumber.setPhoneNumSmart(phoneSmart);
+                        allPhoneNum.add(phoneNumber);
                 }
             }
+            cursor.close();
         }
         return allPhoneNum;
     }
