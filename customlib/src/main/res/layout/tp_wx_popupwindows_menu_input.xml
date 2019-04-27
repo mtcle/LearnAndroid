@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#55000000"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/tiezipopupmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvPopMenu1"
+            style="@style/tieiziinfopopupwindows"
+            android:background="@drawable/shape_bg_top_line_gray"
+            android:text="提示" />
+
+
+        <EditText
+            android:id="@+id/et_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="请输入内容" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPopMenu2"
+                style="@style/tieiziinfopopupwindows"
+                android:background="@drawable/shape_bg_top_line_gray"
+                android:text="确认" />
+
+            <TextView
+                android:id="@+id/tvCancel"
+                style="@style/tieiziinfopopupwindows"
+                android:background="@drawable/shape_bg_top_line_gray"
+                android:text="取消"
+                android:textColor="#6666" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

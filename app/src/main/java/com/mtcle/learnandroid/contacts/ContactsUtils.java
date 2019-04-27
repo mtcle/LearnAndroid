@@ -20,6 +20,7 @@ import java.util.List;
  */
 public class ContactsUtils {
 
+
     /**
      * 耗时操作，巨慢
      *
@@ -137,10 +138,13 @@ public class ContactsUtils {
         }
 
         String displayName = null;
+        //手机号格式，例如13912345678  转换为：139 1234 5678
         String phone1 = new StringBuffer(phoneNum.subSequence(0, 3)).append(" ").append(phoneNum.substring(3, 7))
                 .append(" ").append(phoneNum.substring(7, 11)).toString();
+        //手机号格式，例如13912345678  转换为：139-1234-5678
         String phone2 = new StringBuffer(phoneNum.subSequence(0, 3)).append("-").append(phoneNum.substring(3, 7))
                 .append("-").append(phoneNum.substring(7, 11)).toString();
+        //手机号格式，例如13912345678  转换为：1 391-234-5678
         String phone3format = new StringBuffer(phoneNum.subSequence(0, 1)).append(" ").append(phoneNum.substring(1, 4)).append("-").append(phoneNum.substring(4, 7))
                 .append("-").append(phoneNum.substring(7, 11)).toString();
         ContentResolver resolver = context.getContentResolver();

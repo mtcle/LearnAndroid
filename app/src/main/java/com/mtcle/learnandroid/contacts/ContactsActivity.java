@@ -1,11 +1,13 @@
 package com.mtcle.learnandroid.contacts;
 
 import android.Manifest;
+import android.util.Log;
 import android.view.View;
 
 import com.mtcle.customlib.common.CommonAcitivty;
 import com.mtcle.customlib.common.utils.DebugUtil;
 import com.mtcle.customlib.common.utils.ViewUtil;
+import com.mtcle.customlib.common.view.DialogInput;
 import com.mtcle.learnandroid.R;
 
 import java.util.List;
@@ -30,8 +32,8 @@ public class ContactsActivity extends CommonAcitivty {
             public void result(boolean isPermissioned) {
                 if (isPermissioned) {
                     //有权限
-//                    List<ContactUserBean> contacts = ContactsUtils.queryContacts(mContext);
-//                    DebugUtil.debug("读取通讯录结束：" + contacts);
+                    List<ContactUserBean> contacts = ContactsUtils.queryContacts(mContext);
+                    DebugUtil.debug("读取通讯录结束：" + contacts);
 
                     String userNme = ContactsUtils.getDisplayNameByPhone1(mContext, "15966666666");
                     DebugUtil.debug("根据电话查姓名结果：" + userNme);
@@ -47,7 +49,7 @@ public class ContactsActivity extends CommonAcitivty {
 
     public void btnSms(View v) {
 
-       requestPerssion(new String[]{ Manifest.permission.READ_SMS,Manifest.permission.READ_CONTACTS}, new PermissionCallback() {
+        requestPerssion(new String[]{Manifest.permission.READ_SMS, Manifest.permission.READ_CONTACTS}, new PermissionCallback() {
             @Override
             public void result(boolean isPermissioned) {
                 if (isPermissioned) {
@@ -60,5 +62,35 @@ public class ContactsActivity extends CommonAcitivty {
                 }
             }
         });
+    }
+
+
+    public void btnDialog(View v) {
+//        PopFromDownDialog popFromDownDialog = new PopFromDownDialog(this, new PopFromDownDialog.MenuClickDialogListener() {
+//            @Override
+//            public void onMenu1Clicked() {
+//
+//            }
+//
+//            @Override
+//            public void onMenu2Clicked() {
+//
+//            }
+//        });
+//
+//        popFromDownDialog.show(v);
+
+
+        DialogInput dialogInput=new DialogInput(this, new DialogInput.MenuClickDialogListener() {
+            @Override
+            public void onMenu2Clicked(String inputStr) {
+                Log.d("mtcle","input输入的值："+inputStr);
+            }
+        });
+
+
+        dialogInput.show(v);
+
+
     }
 }

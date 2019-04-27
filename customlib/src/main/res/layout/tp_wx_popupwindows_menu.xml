@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#55000000"
+    android:gravity="bottom"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/tiezipopupmenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tvPopMenu1"
+            style="@style/tieiziinfopopupwindows"
+            android:background="@drawable/shape_bg_top_line_gray"
+            android:text="拍照" />
+
+
+        <TextView
+            android:id="@+id/tvPopMenu2"
+            style="@style/tieiziinfopopupwindows"
+            android:background="@drawable/shape_bg_top_line_gray"
+            android:text="从手机相册选择" />
+
+
+        <TextView
+            android:id="@+id/tvCancel"
+            style="@style/tieiziinfopopupwindows"
+            android:background="@drawable/shape_bg_top_line_gray"
+            android:text="取消"
+            android:textColor="#6666" />
+    </LinearLayout>
+
+</LinearLayout>

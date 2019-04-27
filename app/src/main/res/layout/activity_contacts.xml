@@ -15,6 +15,10 @@
         android:layout_height="wrap_content"
         android:onClick="btnSms"
         android:text="短信" />
-
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="btnDialog"
+        android:text="对话框" />
 
 </LinearLayout>
