@@ -5,8 +5,8 @@ import android.support.annotation.Nullable;
 
 import com.mtcle.customlib.common.CommonAcitivty;
 import com.mtcle.learnandroid.R;
-import com.mtcle.learnandroid.day324.pattern.build.ClassB;
-import com.mtcle.learnandroid.day324.pattern.build.ClassBBuilder;
+import com.mtcle.learnandroid.day324.pattern.buildPattern.ClassB;
+import com.mtcle.learnandroid.day324.pattern.buildPattern.ClassBBuilder;
 import com.mtcle.learnandroid.day324.pattern.factory.ClassA;
 import com.mtcle.learnandroid.day324.pattern.factory.ClassAFactory;
 import com.mtcle.learnandroid.day324.pattern.instances.SingleInstancClass;
